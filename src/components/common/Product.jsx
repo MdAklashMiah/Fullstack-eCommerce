@@ -1,59 +1,49 @@
-export default function ProductCard({
-  title,
-  subtitle,
-  price,
-  oldPrice,
-  image,
-  rating = 3,
-}) {
+"use client";
+import React from "react";
+
+export default function Product() {
   return (
-    <div className="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg md:min-w-xs flex flex-col transition-all">
-      <a href="/product">
+    <div className="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg flex flex-col transition-all w-full sm:w-[48%] md:w-[23%]">
+        <a href="/product">  
       {/* Image */}
       <div className="w-full bg-gray-50">
-        <a href="/product" className="block">
-          <img
-            src={"/images/products/images.png"}
-            alt={title}
-            className="w-full object-cover object-top h-60"
-          />
-        </a>
+        <img
+          src="/images/products/images.png"
+          alt="Classic White T-Shirt"
+          className="w-full object-cover object-top h-48 sm:h-56 md:h-60"
+        />
       </div>
 
       {/* Content */}
       <div className="p-3 flex-1 flex flex-col">
         <div className="flex-1">
           {/* Title */}
-          <a href="#" className="block border-0 outline-0">
-            <h5 className="text-sm sm:text-base font-semibold text-slate-900 truncate">
-              {title}
-            </h5>
-          </a>
+          <h5 className="text-sm sm:text-base font-semibold text-slate-900 truncate">
+            Classic White T-Shirt
+          </h5>
 
           {/* Subtitle */}
-          <p className="text-sm mt-1 text-slate-600 truncate">{subtitle}</p>
+          <p className="text-xs sm:text-sm mt-1 text-slate-600 truncate">
+            100% Cotton
+          </p>
 
-          {/* Price */}
-          <div className="flex flex-wrap justify-between gap-2 mt-3">
+          {/* Price + Rating */}
+          <div className="flex flex-wrap justify-between gap-2 mt-3 items-center">
             <div className="flex gap-2 items-center">
               <h6 className="text-sm sm:text-base font-bold text-slate-900">
-                ${price}
+                $29.99
               </h6>
-
-              {oldPrice && (
-                <h6 className="text-sm sm:text-base text-slate-600">
-                  <strike>${oldPrice}</strike>
-                </h6>
-              )}
+              <h6 className="text-xs sm:text-sm text-slate-600">
+                <strike>$39.99</strike>
+              </h6>
             </div>
 
-            {/* Rating */}
             <div className="flex items-center gap-0.5">
               {[...Array(5)].map((_, i) => (
                 <svg
                   key={i}
-                  className={`w-[14px] h-[14px] ${
-                    i < rating ? "fill-yellow-400" : "fill-[#CED5D8]"
+                  className={`w-3 h-3 sm:w-[14px] sm:h-[14px] ${
+                    i < 4 ? "fill-yellow-400" : "fill-[#CED5D8]"
                   }`}
                   viewBox="0 0 14 13"
                   xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +57,6 @@ export default function ProductCard({
 
         {/* Wishlist + Add to Cart */}
         <div className="flex items-center gap-2 mt-4">
-          {/* Wishlist Button */}
           <button
             className="bg-gray-200 w-12 h-9 flex items-center justify-center rounded-sm cursor-pointer"
             title="Wishlist"
@@ -82,17 +71,12 @@ export default function ProductCard({
             </svg>
           </button>
 
-          {/* Add to Cart Button */}
-          <button
-            type="button"
-            
-            className="text-sm font-medium px-2 cursor-pointer min-h-[36px] w-full bg-secondary text-white tracking-wide ml-auto outline-0 border-0 rounded-sm"
-          >
+          <button className="text-xs sm:text-sm font-medium px-2 cursor-pointer min-h-[36px] w-full bg-black text-white tracking-wide ml-auto rounded-sm">
             Add to cart
           </button>
         </div>
       </div>
-      </a>
+        </a>
     </div>
   );
 }

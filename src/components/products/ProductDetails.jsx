@@ -11,6 +11,7 @@ import {
   Minus,
   Maximize2,
 } from "lucide-react";
+import RelatedProducts from "./RelatedProducts";
 
 export default function ProductView() {
   const images = [
@@ -188,132 +189,134 @@ export default function ProductView() {
       </div>
 
       {/* TABS SECTION — NEW PART ADDED */}
-       <div className="max-w-7xl mx-auto px-6 lg:px-12 mt-20">
-      {/* Tabs */}
-      <div className="flex gap-10 text-sm font-semibold border-b pb-3">
-        <button
-          className={`pb-2 ${
-            activeTab === "description"
-              ? "text-black border-b-2 border-black"
-              : "text-gray-500 hover:text-black"
-          }`}
-          onClick={() => setActiveTab("description")}
-        >
-          DESCRIPTION
-        </button>
-        <button
-          className={`pb-2 ${
-            activeTab === "additional"
-              ? "text-black border-b-2 border-black"
-              : "text-gray-500 hover:text-black"
-          }`}
-          onClick={() => setActiveTab("additional")}
-        >
-          ADDITIONAL INFORMATION
-        </button>
-        <button
-          className={`pb-2 ${
-            activeTab === "reviews"
-              ? "text-black border-b-2 border-black"
-              : "text-gray-500 hover:text-black"
-          }`}
-          onClick={() => setActiveTab("reviews")}
-        >
-          REVIEWS (3)
-        </button>
-      </div>
-
-      {/* Tab Content */}
-      {activeTab === "description" && (
-        <div className="mt-8 text-gray-700 leading-relaxed">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-            sed volutpat orci. Fusce eget lorem mauris vehicula elementum
-            gravida nec dui...
-          </p>
-
-          <h3 className="mt-10 font-semibold text-lg">Why choose product?</h3>
-          <ul className="list-disc ml-6 mt-3 space-y-2 text-gray-700">
-            <li>Cushy soft cotton fabric, very smooth</li>
-            <li>Simple configurable design</li>
-            <li>Digital downloadable items included</li>
-          </ul>
-
-          <h3 className="mt-10 font-semibold text-lg">Sample Number List</h3>
-          <ol className="list-decimal ml-6 mt-3 space-y-2 text-gray-700">
-            <li>Create store-specific attributes</li>
-            <li>Simple or configurable bundles</li>
-            <li>Digital/Virtual products included</li>
-          </ol>
-
-          <h3 className="mt-10 font-semibold text-lg">Lining</h3>
-          <p className="text-gray-700 mt-2">
-            100% Polyester, Main: 100% Polyester.
-          </p>
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 mt-20">
+        {/* Tabs */}
+        <div className="flex gap-10 text-sm font-semibold border-b pb-3">
+          <button
+            className={`pb-2 ${
+              activeTab === "description"
+                ? "text-black border-b-2 border-black"
+                : "text-gray-500 hover:text-black"
+            }`}
+            onClick={() => setActiveTab("description")}
+          >
+            DESCRIPTION
+          </button>
+          <button
+            className={`pb-2 ${
+              activeTab === "additional"
+                ? "text-black border-b-2 border-black"
+                : "text-gray-500 hover:text-black"
+            }`}
+            onClick={() => setActiveTab("additional")}
+          >
+            ADDITIONAL INFORMATION
+          </button>
+          <button
+            className={`pb-2 ${
+              activeTab === "reviews"
+                ? "text-black border-b-2 border-black"
+                : "text-gray-500 hover:text-black"
+            }`}
+            onClick={() => setActiveTab("reviews")}
+          >
+            REVIEWS (3)
+          </button>
         </div>
-      )}
 
-      {activeTab === "additional" && (
-        <div className="mt-8 text-gray-700 leading-relaxed">
-          <h3 className="font-semibold text-lg">Additional Information</h3>
-          <ul className="list-disc ml-6 mt-3 space-y-2 text-gray-700">
-            <li>Material: Premium Soft Cotton Blend</li>
-            <li>Fit Type: Regular & Comfortable</li>
-            <li>Care: Machine wash cold, gentle cycle</li>
-            <li>Packaging: Eco-friendly recyclable material</li>
-            <li>Manufactured in: Bangladesh</li>
-          </ul>
+        {/* Tab Content */}
+        {activeTab === "description" && (
+          <div className="mt-8 text-gray-700 leading-relaxed">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+              sed volutpat orci. Fusce eget lorem mauris vehicula elementum
+              gravida nec dui...
+            </p>
 
-          <h3 className="mt-10 font-semibold text-lg">Specifications</h3>
-          <p className="mt-2">
-            Crafted for everyday wear with durable stitching and breathable
-            fabric that maintains comfort throughout the day.
-          </p>
-        </div>
-      )}
+            <h3 className="mt-10 font-semibold text-lg">Why choose product?</h3>
+            <ul className="list-disc ml-6 mt-3 space-y-2 text-gray-700">
+              <li>Cushy soft cotton fabric, very smooth</li>
+              <li>Simple configurable design</li>
+              <li>Digital downloadable items included</li>
+            </ul>
 
-      {activeTab === "reviews" && (
-        <div className="mt-8 text-gray-700 leading-relaxed">
-          <h3 className="font-semibold text-lg">Customer Reviews</h3>
+            <h3 className="mt-10 font-semibold text-lg">Sample Number List</h3>
+            <ol className="list-decimal ml-6 mt-3 space-y-2 text-gray-700">
+              <li>Create store-specific attributes</li>
+              <li>Simple or configurable bundles</li>
+              <li>Digital/Virtual products included</li>
+            </ol>
 
-          <div className="mt-4 space-y-6">
-            {/* Rating Summary */}
-            <div>
-              <p className="font-semibold">⭐ 4.8 / 5</p>
-              <p className="text-gray-600 text-sm">
-                Based on 124 customer reviews
-              </p>
-            </div>
+            <h3 className="mt-10 font-semibold text-lg">Lining</h3>
+            <p className="text-gray-700 mt-2">
+              100% Polyester, Main: 100% Polyester.
+            </p>
+          </div>
+        )}
 
-            {/* Review 1 */}
-            <div className="border-b pb-4">
-              <p className="font-semibold">Ayesha R.</p>
-              <p className="text-sm text-gray-600 mt-1">
-                Excellent quality! The fabric feels soft and premium. Really
-                pleased with the purchase.
-              </p>
-            </div>
+        {activeTab === "additional" && (
+          <div className="mt-8 text-gray-700 leading-relaxed">
+            <h3 className="font-semibold text-lg">Additional Information</h3>
+            <ul className="list-disc ml-6 mt-3 space-y-2 text-gray-700">
+              <li>Material: Premium Soft Cotton Blend</li>
+              <li>Fit Type: Regular & Comfortable</li>
+              <li>Care: Machine wash cold, gentle cycle</li>
+              <li>Packaging: Eco-friendly recyclable material</li>
+              <li>Manufactured in: Bangladesh</li>
+            </ul>
 
-            {/* Review 2 */}
-            <div className="border-b pb-4">
-              <p className="font-semibold">Rahim U.</p>
-              <p className="text-sm text-gray-600 mt-1">
-                Fits perfectly and looks stylish. Highly recommended for daily
-                wear.
-              </p>
-            </div>
+            <h3 className="mt-10 font-semibold text-lg">Specifications</h3>
+            <p className="mt-2">
+              Crafted for everyday wear with durable stitching and breathable
+              fabric that maintains comfort throughout the day.
+            </p>
+          </div>
+        )}
 
-            {/* Review 3 */}
-            <div>
-              <p className="font-semibold">Mitu S.</p>
-              <p className="text-sm text-gray-600 mt-1">
-                Great material and fast delivery. Satisfied with the product.
-              </p>
+        {activeTab === "reviews" && (
+          <div className="mt-8 text-gray-700 leading-relaxed">
+            <h3 className="font-semibold text-lg">Customer Reviews</h3>
+
+            <div className="mt-4 space-y-6">
+              {/* Rating Summary */}
+              <div>
+                <p className="font-semibold">⭐ 4.8 / 5</p>
+                <p className="text-gray-600 text-sm">
+                  Based on 124 customer reviews
+                </p>
+              </div>
+
+              {/* Review 1 */}
+              <div className="border-b pb-4">
+                <p className="font-semibold">Ayesha R.</p>
+                <p className="text-sm text-gray-600 mt-1">
+                  Excellent quality! The fabric feels soft and premium. Really
+                  pleased with the purchase.
+                </p>
+              </div>
+
+              {/* Review 2 */}
+              <div className="border-b pb-4">
+                <p className="font-semibold">Rahim U.</p>
+                <p className="text-sm text-gray-600 mt-1">
+                  Fits perfectly and looks stylish. Highly recommended for daily
+                  wear.
+                </p>
+              </div>
+
+              {/* Review 3 */}
+              <div>
+                <p className="font-semibold">Mitu S.</p>
+                <p className="text-sm text-gray-600 mt-1">
+                  Great material and fast delivery. Satisfied with the product.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+
+      <RelatedProducts/>
     </section>
   );
 }

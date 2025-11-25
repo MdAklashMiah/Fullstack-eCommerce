@@ -9,20 +9,15 @@ export default function SearchBar() {
   const [mobileMenu, setMobileMenu] = useState(false);
 
   const browseItems = [
-    "Electronics",
-    "Fashion",
-    "Home & Furniture",
-    "Sports",
-    "Beauty Products",
+    "T-Shirts & Shirts",
+    "Jeans & Trousers",
+    "Jackets & Coats",
+    "Suits & Blazers",
+    "Activewear & Sportswear",
+    "Shoes & Sneakers",
+    "Accessories (Watches, Belts, Hats)"
   ];
 
-  const allCategories = [
-    "All Category",
-    "Trending",
-    "Top Rated",
-    "Best Seller",
-    "New Arrival",
-  ];
 
   return (
     <div className="max-w-4/5 mx-auto  border-b  px-4  flex items-center gap-3">

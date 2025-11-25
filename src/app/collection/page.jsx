@@ -6,9 +6,8 @@ import Sidebar from "@/components/shop/Sidebar";
 
 export default function ShopPage() {
   return (
-    <main>
+    <section className="pt-32">
       <Container>
-        <ShopBanner/>
         <div className="flex">
           {/* Sidebar */}
           <Sidebar />
@@ -16,12 +15,7 @@ export default function ShopPage() {
           {/* Products Section */}
           <section className="flex-1 p-10">
             {/* Header */}
-            <div className="flex justify-between text-sm text-gray-500 mb-10">
-              <span>HOME / THE SHOP</span>
-              <div className="flex gap-5">
-                <span>DEFAULT SORTING ⌄</span>
-              </div>
-            </div>
+            
             {/* Products Grid */}
             <div className="grid grid-cols-3 gap-8">
               <ProductCard label="-67%" title="Calvin Shorts" price={62} />
@@ -56,6 +50,6 @@ export default function ShopPage() {
           </section>
         </div>
       </Container>
-    </main>
+    </section>
   );
 }
