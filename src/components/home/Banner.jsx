@@ -1,12 +1,27 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Container from "../common/Container";
 import Slider from "react-slick";
+import axios from "axios";
 
 const Banner = () => {
+  const [banners, setBanners] = useState([])
+
+
+  useEffect(() => {
+      axios.get("http://localhost:4000/api/v1/banner/allbanners").then((res)=>{
+        setBanners(res.data.data)
+      }).catch((err)=>{
+        console.log(err)
+      })
+  }, [])
+  
+  console.log(banners)
+
+
   let settings = {
     dots: true,
     infinite: true,
@@ -14,34 +29,25 @@ const Banner = () => {
     slidesToScroll: 1,
     autoplay: true,
     speed: 1000,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 1000,
   };
 
   return (
     <section className="pb-16 pt-32">
       <Container>
         <Slider {...settings}>
+          {banners.map((item)=>{
+            return(
           <div>
             <img
-              src="/images/banner/banner1.jpg"
+              src={item.image}
               alt="bannerimage"
-              className="w-full h-auto"
+              className="w-full h-auto aspect-video"
             />
           </div>
-          <div>
-            <img
-              src="/images/banner/banner2.jpg"
-              alt="bannerimage"
-              className="w-full h-auto"
-            />
-          </div>
-          <div>
-            <img
-              src="/images/banner/banner3.jpg"
-              alt="bannerimage"
-              className="w-full h-auto"
-            />
-          </div>
+
+            )
+          })}
         </Slider>
       </Container>
     </section>
