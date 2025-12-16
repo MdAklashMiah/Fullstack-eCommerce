@@ -2,6 +2,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
+import ReduxProvider from "@/components/redux/ReduxProvider";
+import VerifyUser from "@/components/verify/VerifyUser";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,9 +26,13 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header/>
-        {children}
-        <Footer/>
+        <ReduxProvider>
+          <VerifyUser>
+            <Header />
+            {children}
+            <Footer />
+          </VerifyUser>
+        </ReduxProvider>
       </body>
     </html>
   );

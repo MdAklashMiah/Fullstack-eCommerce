@@ -12,16 +12,13 @@ const Banner = () => {
 
 
   useEffect(() => {
-      axios.get("http://localhost:4000/api/v1/banner/allbanners").then((res)=>{
+      axios.get(`${process.env.NEXT_PUBLIC_API}/banner/allbanners`).then((res)=>{
         setBanners(res.data.data)
       }).catch((err)=>{
         console.log(err)
       })
   }, [])
   
-  console.log(banners)
-
-
   let settings = {
     dots: true,
     infinite: true,

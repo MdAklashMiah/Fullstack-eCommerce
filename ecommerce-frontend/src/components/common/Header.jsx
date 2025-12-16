@@ -5,8 +5,19 @@ import Link from "next/link";
 import { Menu, User, Heart, ShoppingCart, X } from "lucide-react";
 import Container from "./Container";
 import SearchBar from "./SearchBar";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { userInfo } from "@/slices/userSlice";
+import { useRouter } from "next/navigation";
+
 
 const Header = () => {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  const dispatch = useDispatch()
+  const router = useRouter()
+
   const [mobileOpen, setMobileOpen] = useState(false);
   const [active, setActive] = useState("HOME");
 
@@ -19,10 +30,18 @@ const Header = () => {
   // Close on outside click
   useEffect(() => {
     function handleClickOutside(event) {
-      if (isLoginOpen && loginRef.current && !loginRef.current.contains(event.target)) {
+      if (
+        isLoginOpen &&
+        loginRef.current &&
+        !loginRef.current.contains(event.target)
+      ) {
         setIsLoginOpen(false);
       }
-      if (isSignupOpen && signupRef.current && !signupRef.current.contains(event.target)) {
+      if (
+        isSignupOpen &&
+        signupRef.current &&
+        !signupRef.current.contains(event.target)
+      ) {
         setIsSignupOpen(false);
       }
     }
@@ -41,6 +60,28 @@ const Header = () => {
     document.addEventListener("keydown", handleEsc);
     return () => document.removeEventListener("keydown", handleEsc);
   }, []);
+
+  let handleEmail = (e) =>{
+    setEmail(e.target.value)
+  }
+  let handlePassword = (e) =>{
+    setPassword(e.target.value)
+  }
+
+  let handleLogin = (e) => {
+    e.preventDefault();
+
+    axios.post(`${process.env.NEXT_PUBLIC_API}/auth/login`, {
+      email,
+      password
+    }).then((res)=>{
+      localStorage.setItem("token", JSON.stringify(res.data.token))
+      dispatch(userInfo(res.data.data))
+      router.push("/")
+    }).catch((err)=>{
+      console.log(err)
+    })
+  };
 
   const navLinks = ["HOME", "SHOP", "COLLECTION", "CONTACT", "ABOUT US"];
 
@@ -63,7 +104,9 @@ const Header = () => {
                 href={getPath(link)}
                 onClick={() => setActive(link)}
                 className={`relative ${
-                  active === link ? "text-white" : "text-gray-300 hover:text-white"
+                  active === link
+                    ? "text-white"
+                    : "text-gray-300 hover:text-white"
                 }`}
               >
                 {link}
@@ -87,7 +130,10 @@ const Header = () => {
             </div>
 
             <div className="md:hidden">
-              <Menu className="w-6 h-6 cursor-pointer" onClick={() => setMobileOpen(true)} />
+              <Menu
+                className="w-6 h-6 cursor-pointer"
+                onClick={() => setMobileOpen(true)}
+              />
             </div>
           </div>
         </div>
@@ -100,17 +146,36 @@ const Header = () => {
             ref={loginRef}
             className="bg-white w-full max-w-md px-6 py-8 rounded-xl shadow-xl relative"
           >
-            <button className="absolute top-3 right-3" onClick={() => setIsLoginOpen(false)}>
+            <button
+              className="absolute top-3 right-3"
+              onClick={() => setIsLoginOpen(false)}
+            >
               <X />
             </button>
 
             <h2 className="text-2xl font-semibold text-center mb-6">Login</h2>
 
-            <form className="flex flex-col gap-4">
-              <input type="email" placeholder="Email address" className="border px-4 py-3 rounded-lg" />
-              <input type="password" placeholder="Password" className="border px-4 py-3 rounded-lg" />
+            <form className="flex flex-col gap-4" onSubmit={handleLogin}>
+              <input
+                type="email"
+                value={email}
+                onChange={handleEmail}
+                placeholder="Email address"
+                className="border px-4 py-3 rounded-lg"
 
-              <button type="submit" className="bg-secondary text-white py-3 rounded-lg mt-2">
+              />
+              <input
+                type="password"
+                value={password}
+                onChange={handlePassword}
+                placeholder="Password"
+                className="border px-4 py-3 rounded-lg"
+              />
+
+              <button
+                type="submit"
+                className="bg-secondary text-white py-3 rounded-lg mt-2"
+              >
                 Login
               </button>
 
@@ -139,18 +204,38 @@ const Header = () => {
             ref={signupRef}
             className="bg-white w-full max-w-md px-6 py-8 rounded-xl shadow-xl relative"
           >
-            <button className="absolute top-3 right-3" onClick={() => setIsSignupOpen(false)}>
+            <button
+              className="absolute top-3 right-3"
+              onClick={() => setIsSignupOpen(false)}
+            >
               <X />
             </button>
 
-            <h2 className="text-2xl font-semibold text-center mb-6">Create Account</h2>
+            <h2 className="text-2xl font-semibold text-center mb-6">
+              Create Account
+            </h2>
 
             <form className="flex flex-col gap-4">
-              <input type="text" placeholder="Full Name" className="border px-4 py-3 rounded-lg" />
-              <input type="email" placeholder="Email address" className="border px-4 py-3 rounded-lg" />
-              <input type="password" placeholder="Password" className="border px-4 py-3 rounded-lg" />
+              <input
+                type="text"
+                placeholder="Full Name"
+                className="border px-4 py-3 rounded-lg"
+              />
+              <input
+                type="email"
+                placeholder="Email address"
+                className="border px-4 py-3 rounded-lg"
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                className="border px-4 py-3 rounded-lg"
+              />
 
-              <button type="submit" className="bg-secondary text-white py-3 rounded-lg mt-2">
+              <button
+                type="submit"
+                className="bg-secondary text-white py-3 rounded-lg mt-2"
+              >
                 Register
               </button>
 
